@@ -35,3 +35,9 @@ class VideoCamera:
 
         _, jpegFrame = cv2.imencode('.jpg', frame)
         return jpegFrame.tobytes()
+
+    def frame_generator(self):
+        while True:
+            frame = self.get_frame()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
