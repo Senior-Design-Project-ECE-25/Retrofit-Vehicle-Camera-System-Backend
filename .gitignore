@@ -1,6 +1,7 @@
 ### Dirs
-env/
 __pycache__/
+env/
+logs/
 
 ### Files
 .DS_Store
