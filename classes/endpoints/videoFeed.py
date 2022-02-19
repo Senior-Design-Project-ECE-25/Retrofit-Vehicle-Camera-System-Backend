@@ -18,4 +18,3 @@ class VideoFeed(Resource):
             self.camera.frame_generator(),
             mimetype='multipart/x-mixed-replace; boundary=frame'
         )
-        return jsonify('VideoFeed Endpoint')
