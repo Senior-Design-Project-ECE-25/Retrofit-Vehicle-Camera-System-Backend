@@ -1,0 +1,9 @@
+### Dirs
+__pycache__/
+env/
+logs/
+
+### Files
+.DS_Store
+*.py[cod]
+*.log

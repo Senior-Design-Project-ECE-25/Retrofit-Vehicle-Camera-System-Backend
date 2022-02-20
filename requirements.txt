@@ -1,0 +1,7 @@
+flask
+flask-restful
+imutils
+numpy
+opencv-contrib-python
+opencv-python
+picamera
