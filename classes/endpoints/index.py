@@ -1,4 +1,5 @@
-from flask import render_template
+from urllib import response
+from flask import render_template, make_response
 from flask_restful import Resource
 
 from config import BASE_DIR
@@ -13,4 +14,7 @@ class Index(Resource):
 
     @log_request
     def get(self) -> str:
-        return render_template(f'index.html')
+        html_template = render_template(f'index.html')
+        response = make_response(html_template)
+        response.headers['content-type'] = 'text/html'
+        return response
