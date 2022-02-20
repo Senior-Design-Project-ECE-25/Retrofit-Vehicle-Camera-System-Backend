@@ -5,4 +5,5 @@ logs/
 
 ### Files
 .DS_Store
+*.py[cod]
 *.log
