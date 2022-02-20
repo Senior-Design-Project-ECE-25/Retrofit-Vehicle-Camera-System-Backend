@@ -13,4 +13,4 @@ class Index(Resource):
 
     @log_request
     def get(self) -> str:
-        return render_template(f'{BASE_DIR}/templates/index.html')
+        return render_template(f'index.html')
