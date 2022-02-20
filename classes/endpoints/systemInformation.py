@@ -14,7 +14,33 @@ class SystemInformation(Resource):
     @log_request
     def get(self):
         return jsonify(data={
-            'osVersion': check_output(['cat', '/etc/os-release'])
-            .decode('utf-8'),
-            'rvcsVersion': 'v1.0.0 beta'
+            'os-info': System.get_os_information(),
+            'rvcs-version': System.get_rvcs_version(),
+            'bt-mac': System.get_bluetooth_mac()
         })
+
+
+class System:
+    """Collection of system information getters."""
+    def __init__(self) -> None:
+        print('Not meant to be instantiated.')
+
+    @staticmethod
+    def get_os_information() -> dict:
+        raw = check_output(['cat', '/etc/os-release'])\
+                           .decode('utf-8')
+        info_pairs = [kv.split('=') for kv in raw.split('\n')]
+        return {
+            pair[0]: pair[1]
+            for pair in info_pairs
+        }
+
+    @staticmethod
+    def get_rvcs_version() -> str:
+        return 'v1.0.0 beta'
+
+    @staticmethod
+    def get_bluetooth_mac() -> str:
+        raw = check_output(['sudo', 'ls', '/var/lib/bluetooth/'])\
+                           .decode('utf-8')
+        return raw.split('\n')[0]
