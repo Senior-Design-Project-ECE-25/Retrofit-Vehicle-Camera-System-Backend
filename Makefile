@@ -19,4 +19,4 @@ clean:
 	@echo "Cleaning...";
 	$(RM) -r $(LOGDIR)
 
-.PHONY: install test clean
+.PHONY: install test run clean
