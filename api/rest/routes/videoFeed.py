@@ -1,8 +1,8 @@
 from flask import Response, jsonify
 from flask_restful import Resource, Api
 
-from classes.camera import VideoCamera
-from utils import log_request
+from ...services.camera import VideoCamera
+from ..utilities.utils import log_request
 
 
 class VideoFeed(Resource):
