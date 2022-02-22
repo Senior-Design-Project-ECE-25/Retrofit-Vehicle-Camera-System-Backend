@@ -2,6 +2,5 @@ flask
 flask-restful
 imutils
 numpy
-opencv-contrib-python
-opencv-python
+opencv-contrib-python-headless
 picamera

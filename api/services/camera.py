@@ -5,9 +5,9 @@ import logging.config
 import numpy as np
 from imutils.video.pivideostream import PiVideoStream
 
-from config import BASE_DIR
+from ..config import BASE_DIR
 
-logging.config.fileConfig(f'{BASE_DIR}/config/logger.ini',
+logging.config.fileConfig(f'{BASE_DIR}/api/config/logger.ini',
                           disable_existing_loggers=False)
 vsLogger = logging.getLogger('vsLogger')
 

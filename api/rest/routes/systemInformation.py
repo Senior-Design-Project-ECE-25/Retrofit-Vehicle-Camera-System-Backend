@@ -2,7 +2,7 @@ from flask import jsonify
 from flask_restful import Resource
 from subprocess import check_output
 
-from utils import log_request
+from ..utilities.utils import log_request
 
 
 class SystemInformation(Resource):

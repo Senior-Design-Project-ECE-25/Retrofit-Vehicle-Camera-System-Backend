@@ -1,10 +1,8 @@
 from flask import Flask
 from flask_restful import Api
 
-from classes.camera import VideoCamera
-from classes.endpoints.index import Index
-from classes.endpoints.videoFeed import VideoFeed
-from classes.endpoints.systemInformation import SystemInformation
+from api.services.camera import VideoCamera
+from api.rest.routes import Index, VideoFeed, SystemInformation
 
 
 class RVCSApp:
@@ -23,5 +21,5 @@ class RVCSApp:
 
 
 if __name__ == '__main__':
-    from config import API_HOST, API_PORT
+    from api.config import API_HOST, API_PORT
     RVCSApp().run(host=API_HOST, port=API_PORT)
