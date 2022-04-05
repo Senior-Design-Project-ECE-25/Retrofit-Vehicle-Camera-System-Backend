@@ -12,8 +12,8 @@ def log_request(func):
     def wrapper(*args, **kwargs):
         try:
             ret = func(*args, **kwargs)
-            appLogger.info(func.__qualname__)
+            appLogger.info(f'{func.__qualname__} successful')
             return ret
         except Exception as err:
-            appLogger.error(func.__qualname__)
+            appLogger.error(f'{func.__qualname__} failed - {err}')
     return wrapper
