@@ -4,14 +4,12 @@ from flask_restful import Resource
 from ..utilities.utils import log_request
 
 
-
 class logs(Resource):
-
     endpoint = '/api/v1/logs'
 
     def __init__(self) -> None:
         super(logs, self).__init__()
-    
+
     @log_request
     def get(self):
         data = []
@@ -35,4 +33,3 @@ class logs(Resource):
 #         res = vs[-25:]
 
 #         return res
-
