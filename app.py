@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 
 from api.services.camera import VideoCamera
-from api.rest.routes import Index, VideoFeed, SystemInformation
+from api.rest.routes import Logs, Index, VideoFeed, SystemInformation
 
 
 class RVCSApp:
@@ -11,6 +11,7 @@ class RVCSApp:
         api = Api(self.app)
         camera = VideoCamera()
 
+        api.add_resource(Logs, Logs.endpoint)
         api.add_resource(Index, Index.endpoint)
         videoFeedApi = VideoFeed.instantiate_camera(camera)
         api.add_resource(videoFeedApi, videoFeedApi.endpoint)
