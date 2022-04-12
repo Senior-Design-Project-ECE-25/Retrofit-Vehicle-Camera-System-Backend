@@ -19,7 +19,7 @@ class RVCSApp:
         api.add_resource(SystemInformation, SystemInformation.endpoint)
 
     def run(self, host, port):
-        recording_thread = threading.Thread(target=self.camera.record())
+        recording_thread = threading.Thread(target=self.camera.record)
         recording_thread.start()
         self.app.run(host=host, port=port)
 
