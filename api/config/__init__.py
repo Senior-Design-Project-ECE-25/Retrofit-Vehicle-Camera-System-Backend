@@ -5,7 +5,7 @@ BASE_DIR = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 )
 LOG_DIR = BASE_DIR + '/logs'
-os.makedirs(LOG_DIR, mode=0o664, exist_ok=True)
+os.makedirs(LOG_DIR, mode=0o777, exist_ok=True)
 
 assert os.path.exists(f'{BASE_DIR}/api/config/config.json'), \
     'Cannot locate config.json'

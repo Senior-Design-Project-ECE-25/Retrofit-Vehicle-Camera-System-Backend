@@ -38,19 +38,3 @@ class Logs(Resource):
             'level': lvl,
             'message': mes
         }
-
-# class Parse:
-
-#     def get_app(nums):
-#         app = []
-#         app.append(nums)
-#         res = app[-25:]
-
-#         return res
-
-#     def get_vs(nums):
-#         vs = []
-#         vs.append(nums)
-#         res = vs[-25:]
-
-#         return res

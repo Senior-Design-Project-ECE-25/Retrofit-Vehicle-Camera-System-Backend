@@ -1,6 +1,6 @@
 ### Dirs
 __pycache__/
-env/
+venv/
 logs/
 
 ### Files
