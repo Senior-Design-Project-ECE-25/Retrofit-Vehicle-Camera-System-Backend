@@ -4,7 +4,9 @@ import json
 BASE_DIR = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 )
+VIDEO_DIR = BASE_DIR + '/videos'
 LOG_DIR = BASE_DIR + '/logs'
+os.makedirs(VIDEO_DIR, mode=0o777, exist_ok=True)
 os.makedirs(LOG_DIR, mode=0o777, exist_ok=True)
 
 assert os.path.exists(f'{BASE_DIR}/api/config/config.json'), \
@@ -15,3 +17,5 @@ with open(f'{BASE_DIR}/api/config/config.json', 'r') as config_json:
 
 API_HOST = _config['api']['host']
 API_PORT = _config['api']['port']
+
+TIMESTAMP_FORMAT = '%Y%m%dT%H%M%S'

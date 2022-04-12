@@ -1,3 +1,4 @@
+import threading
 from flask import Flask
 from flask_restful import Api
 
@@ -9,15 +10,17 @@ class RVCSApp:
     def __init__(self):
         self.app = Flask(__name__)
         api = Api(self.app)
-        camera = VideoCamera()
+        self.camera = VideoCamera()
 
         api.add_resource(Logs, Logs.endpoint)
         api.add_resource(Index, Index.endpoint)
-        videoFeedApi = VideoFeed.instantiate_camera(camera)
+        videoFeedApi = VideoFeed.instantiate_camera(self.camera)
         api.add_resource(videoFeedApi, videoFeedApi.endpoint)
         api.add_resource(SystemInformation, SystemInformation.endpoint)
 
     def run(self, host, port):
+        recording_thread = threading.Thread(target=self.camera.record())
+        recording_thread.start()
         self.app.run(host=host, port=port)
 
 
