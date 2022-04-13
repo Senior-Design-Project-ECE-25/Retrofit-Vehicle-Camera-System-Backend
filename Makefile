@@ -18,7 +18,7 @@ install:
 # 	$(ENVDIR)/bin/$(PYTHON) rvcs/tests/tests.py
 
 run:
-	$(ENVDIR)/bin/$(PYTHON) rvcs/app.py
+	$(ENVDIR)/bin/$(PYTHON) app.py
 
 clean:
 	@echo "Cleaning...";

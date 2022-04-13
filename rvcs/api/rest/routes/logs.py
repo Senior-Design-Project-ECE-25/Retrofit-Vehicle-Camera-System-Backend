@@ -2,7 +2,7 @@ import os
 from flask import jsonify
 from flask_restful import Resource
 
-from ...config import BASE_DIR
+from ....config import BASE_DIR
 from ..utilities.utils import log_request
 
 

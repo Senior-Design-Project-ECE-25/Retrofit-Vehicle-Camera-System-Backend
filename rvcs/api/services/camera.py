@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime as dt
 from imutils.video.pivideostream import PiVideoStream
 
-from ..config import BASE_DIR, VIDEO_DIR, TIMESTAMP_FORMAT
+from ...config import BASE_DIR, VIDEO_DIR, TIMESTAMP_FORMAT
 
 logging.config.fileConfig(f'{BASE_DIR}/api/config/logger.ini',
                           disable_existing_loggers=False)

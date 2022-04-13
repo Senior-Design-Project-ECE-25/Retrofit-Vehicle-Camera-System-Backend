@@ -2,7 +2,7 @@ from urllib import response
 from flask import render_template, make_response
 from flask_restful import Resource
 
-from ...config import BASE_DIR
+from ....config import BASE_DIR
 from ..utilities.utils import log_request
 
 
