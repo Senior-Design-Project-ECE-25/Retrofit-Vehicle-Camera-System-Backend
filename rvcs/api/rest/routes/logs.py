@@ -20,7 +20,7 @@ class Logs(Resource):
             filename = os.path.splitext(log)[-2]
             data[filename] = []
 
-            with open(f'{BASE_DIR}/logs/{log}', 'r') as log_data:
+            with open(os.path.join(BASE_DIR, 'logs', log), 'r') as log_data:
                 tmp = []
                 for line in log_data:
                     tmp.append(self.__format_log_line(line))

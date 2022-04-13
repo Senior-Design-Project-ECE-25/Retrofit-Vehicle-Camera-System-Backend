@@ -1,7 +1,8 @@
 ### Dirs
 __pycache__/
-venv/
 logs/
+venv/
+videos/
 
 ### Files
 .DS_Store

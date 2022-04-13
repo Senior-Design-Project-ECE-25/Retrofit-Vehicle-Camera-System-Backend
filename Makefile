@@ -15,10 +15,10 @@ install:
 	( source $(ENVDIR)/bin/activate; $(PIP) install -r $(REQ); )
 
 # test:
-# 	$(ENVDIR)/bin/$(PYTHON) tests/tests.py
+# 	$(ENVDIR)/bin/$(PYTHON) rvcs/tests/tests.py
 
 run:
-	$(ENVDIR)/bin/$(PYTHON) Retrofit-Vehicle-Camera-System-Backend/app.py
+	$(ENVDIR)/bin/$(PYTHON) rvcs/app.py
 
 clean:
 	@echo "Cleaning...";
