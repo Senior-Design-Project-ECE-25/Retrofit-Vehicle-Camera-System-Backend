@@ -5,6 +5,7 @@ REQ  := requirements.txt
 REQLOC := requirements-dev.txt
 ENVDIR := ./venv
 LOGDIR := ./logs
+VIDEODIR := ./videos
 
 local:
 	$(PYTHON) -m venv $(ENVDIR)
@@ -22,6 +23,7 @@ run:
 
 clean:
 	@echo "Cleaning...";
-	$(RM) -r $(LOGDIR)
+	$(RM) -r $(LOGDIR) $(VIDEODIR)
+	find . -type f -name '*.py[cod]' -delete -o -type d -name __pycache__ -delete
 
 .PHONY: install test run clean
