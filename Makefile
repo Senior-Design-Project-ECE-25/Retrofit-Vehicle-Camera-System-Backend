@@ -16,7 +16,7 @@ local:
 	( source $(ENVDIR)/bin/activate; $(PIP) install -r $(REQDEV); )
 
 test:
-	$(ENVDIR)/bin/$(PYTHON) -m unittest tests
+	$(ENVDIR)/bin/$(PYTHON) -m unittest discover
 
 run:
 	$(ENVDIR)/bin/$(PYTHON) app.py

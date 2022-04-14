@@ -4,23 +4,26 @@ import logging
 import logging.config
 import numpy as np
 from datetime import datetime as dt
-from imutils.video.pivideostream import PiVideoStream
+try:
+    from imutils.video.pivideostream import PiVideoStream
+except ImportError:
+    PiVideoStream = object()  # For development/testing env
 
-from ...config import BASE_DIR, VIDEO_DIR, TIMESTAMP_FORMAT
+from ...config import BASE_DIR, LOG_INI_PATH, VIDEO_DIR, TIMESTAMP_FORMAT
 
-logging.config.fileConfig(f'{BASE_DIR}/api/config/logger.ini',
-                          disable_existing_loggers=False)
+logging.config.fileConfig(LOG_INI_PATH, disable_existing_loggers=False)
 vsLogger = logging.getLogger('vsLogger')
 
 
-class VideoCamera:
-    def __init__(self, flip=False):
+class Camera:
+    def __init__(self, flip=False, video_module=PiVideoStream):
         vsLogger.info('Initializing Camera')
-        self.video_stream = PiVideoStream().start()
+        self.video_stream = video_module()
+        self.video_stream.start()
         time.sleep(2.0)  # Must sleep for cam initialization
         self.flip = flip
 
-        file = VideoCamera.__generate_file_name()
+        file = Camera.__generate_file_name()
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         self.video_writer = cv2.VideoWriter(
             file,
@@ -28,7 +31,6 @@ class VideoCamera:
             self.video_stream.framerate,
             self.video_stream.resolution
         )
-
         vsLogger.info('Done Initializing Camera')
 
     def __del__(self):
