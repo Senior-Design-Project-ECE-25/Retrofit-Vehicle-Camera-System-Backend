@@ -3,8 +3,12 @@ __pycache__/
 logs/
 venv/
 videos/
+build/
+dist/
+rvcs.egg-info/
 
 ### Files
 .DS_Store
 *.py[cod]
 *.log
+installed-files.txt
