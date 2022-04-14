@@ -9,9 +9,13 @@ try:
 except ImportError:
     PiVideoStream = object()  # For development/testing env
 
-from ...config import BASE_DIR, LOG_INI_PATH, VIDEO_DIR, TIMESTAMP_FORMAT
+from ...config import LOG_INI_PATH, LOG_DEFAULTS, VIDEO_DIR, TIMESTAMP_FORMAT
 
-logging.config.fileConfig(LOG_INI_PATH, disable_existing_loggers=False)
+logging.config.fileConfig(
+    LOG_INI_PATH,
+    defaults=LOG_DEFAULTS,
+    disable_existing_loggers=False
+)
 vsLogger = logging.getLogger('vsLogger')
 
 

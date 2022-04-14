@@ -17,6 +17,5 @@ setup(
         'console_scripts': [
             'rvcs=rvcs.app:main',
         ],
-    },
-    test_suite='tests'
+    }
 )

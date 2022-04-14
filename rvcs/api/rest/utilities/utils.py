@@ -1,9 +1,13 @@
 import logging
 import logging.config
 
-from ....config import LOG_INI_PATH
+from ....config import LOG_INI_PATH, LOG_DEFAULTS
 
-logging.config.fileConfig(LOG_INI_PATH, disable_existing_loggers=False)
+logging.config.fileConfig(
+    LOG_INI_PATH,
+    defaults=LOG_DEFAULTS,
+    disable_existing_loggers=False
+)
 appLogger = logging.getLogger('appLogger')
 
 
