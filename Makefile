@@ -1,22 +1,22 @@
 PYTHON = python3
 PIP := pip3
 
-REQ  := requirements.txt
-REQLOC := requirements-dev.txt
+REQPROD := requirements/prod.txt
+REQDEV := requirements/dev.txt
 ENVDIR := ./venv
 LOGDIR := ./logs
 VIDEODIR := ./videos
 
-local:
-	$(PYTHON) -m venv $(ENVDIR)
-	( source $(ENVDIR)/bin/activate; $(PIP) install -r $(REQLOC); )
-
 install:
 	$(PYTHON) -m venv $(ENVDIR)
-	( source $(ENVDIR)/bin/activate; $(PIP) install -r $(REQ); )
+	( source $(ENVDIR)/bin/activate; $(PIP) install -r $(REQPROD); )
 
-# test:
-# 	$(ENVDIR)/bin/$(PYTHON) rvcs/tests/tests.py
+local:
+	$(PYTHON) -m venv $(ENVDIR)
+	( source $(ENVDIR)/bin/activate; $(PIP) install -r $(REQDEV); )
+
+test:
+	$(ENVDIR)/bin/$(PYTHON) -m unittest tests
 
 run:
 	$(ENVDIR)/bin/$(PYTHON) app.py
