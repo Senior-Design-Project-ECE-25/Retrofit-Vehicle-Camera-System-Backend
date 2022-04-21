@@ -6,6 +6,7 @@ videos/
 build/
 dist/
 rvcs.egg-info/
+.vscode/
 
 ### Files
 .DS_Store

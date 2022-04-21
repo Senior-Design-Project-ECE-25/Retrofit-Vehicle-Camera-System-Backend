@@ -3,4 +3,4 @@ flask-restful
 imutils
 numpy
 opencv-contrib-python-headless
-pycodestyle
+flake8
