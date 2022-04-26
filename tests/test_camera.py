@@ -1,14 +1,14 @@
 import numpy as np
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import Mock
 
 from .context import Camera
 
 
 def create_PiVideoStream_mock():
     pvs_mock = Mock()
-    pvs_mock.return_value.resolution = (320, 480)
-    pvs_mock.return_value.framerate = 32
+    pvs_mock.return_value.camera.resolution = (320, 480)
+    pvs_mock.return_value.camera.framerate = 32
     pvs_mock.return_value.read.return_value = np.zeros(shape=(1, 1))
     pvs_mock.return_value.start.return_value = None
     pvs_mock.return_value.release.return_value = None

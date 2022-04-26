@@ -32,8 +32,8 @@ class Camera:
         self.video_writer = cv2.VideoWriter(
             file,
             fourcc,
-            self.video_stream.framerate,
-            self.video_stream.resolution
+            self.video_stream.camera.framerate,
+            self.video_stream.camera.resolution
         )
         vsLogger.info('Done Initializing Camera')
 
@@ -49,7 +49,7 @@ class Camera:
 
     def record(self):
         last = 0
-        frequency = 1 / self.video_stream.framerate
+        frequency = 1 / self.video_stream.camera.framerate
 
         while True:
             while time.time() - last < frequency:
