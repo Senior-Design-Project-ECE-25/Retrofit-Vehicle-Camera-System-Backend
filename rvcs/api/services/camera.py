@@ -32,7 +32,7 @@ class Camera:
         self.video_writer = cv2.VideoWriter(
             file,
             fourcc,
-            self.video_stream.camera.framerate,
+            int(self.video_stream.camera.framerate),
             self.video_stream.camera.resolution
         )
         vsLogger.info('Done Initializing Camera')
