@@ -2,5 +2,5 @@ flask
 flask-restful
 imutils
 numpy
-opencv-contrib-python-headless
+opencv-python
 flake8
