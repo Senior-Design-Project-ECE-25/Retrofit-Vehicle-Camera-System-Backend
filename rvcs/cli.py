@@ -1,6 +1,5 @@
 import argparse
 
-from .app import App
 from . import __version__
 
 
@@ -22,4 +21,5 @@ def entry_point() -> None:
     args = _get_arguments()
 
     if args.cmd == 'run':
+        from .app import App
         App().run()
