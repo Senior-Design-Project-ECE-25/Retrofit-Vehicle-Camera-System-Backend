@@ -43,6 +43,7 @@ setup(
     author_email='jmcveigh55@gmail.com',
     url='https://github.com/Senior-Design-Project-ECE-25'
         '/Retrofit-Vehicle-Camera-System-Backend.git',
+    python_requires='>=3.7.3',
     packages=find_packages(),
     package_data={
         'rvcs': [
@@ -52,7 +53,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'rvcs=rvcs.app:main',
+            'rvcs=rvcs.cli:entry_point',
         ],
     },
     install_requires=read_requirements(Env.PROD)

@@ -7,7 +7,7 @@ from .api.services.camera import Camera
 from .api.rest.routes import Logs, Index, VideoFeed, SystemInformation
 
 
-class RVCSApp:
+class App:
     def __init__(self) -> None:
         self.app = Flask(__name__)
         api = Api(self.app)
@@ -19,11 +19,7 @@ class RVCSApp:
         api.add_resource(VideoFeedWithCamera, VideoFeedWithCamera.endpoint)
         api.add_resource(SystemInformation, SystemInformation.endpoint)
 
-    def run(self, host, port) -> None:
+    def run(self, host=API_CONF.host, port=API_CONF.port) -> None:
         recording_thread = threading.Thread(target=self.camera.record)
         recording_thread.start()
         self.app.run(host=host, port=port)
-
-
-def main():
-    RVCSApp().run(host=API_CONF.host, port=API_CONF.port)
