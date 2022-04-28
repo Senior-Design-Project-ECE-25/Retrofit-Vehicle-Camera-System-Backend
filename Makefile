@@ -22,7 +22,7 @@ test:
 	$(ENVDIR)/bin/$(PYTHON) -m unittest discover;
 
 run:
-	$(TARGET)
+	$(TARGET) run
 
 clean:
 	@echo "Cleaning...";
