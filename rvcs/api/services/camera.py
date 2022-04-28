@@ -9,7 +9,8 @@ try:
 except ImportError:
     PiVideoStream = object()  # For development/testing env
 
-from ...config import LOG_INI_PATH, LOG_DEFAULTS, VIDEO_DIR, TIMESTAMP_FORMAT
+from ...config import LOG_INI_PATH, LOG_DEFAULTS, VIDEO_PATH,\
+                      CAMERA_RESOLUTION, CAMERA_FRAMERATE, TIMESTAMP_FORMAT
 
 logging.config.fileConfig(
     LOG_INI_PATH,
@@ -22,7 +23,9 @@ vsLogger = logging.getLogger('vsLogger')
 class Camera:
     def __init__(self, flip=False, video_stream_cls=PiVideoStream):
         vsLogger.info('Initializing Camera')
-        self.video_stream = video_stream_cls(resolution=(240, 320))
+        self.video_stream = video_stream_cls(
+            resolution=CAMERA_RESOLUTION,
+            framerate=CAMERA_FRAMERATE)
         self.video_stream.start()
         time.sleep(2.0)  # Must sleep for cam initialization
         self.flip = flip
@@ -76,4 +79,4 @@ class Camera:
     @staticmethod
     def __generate_file_name() -> str:
         ts = dt.now().strftime(TIMESTAMP_FORMAT)
-        return VIDEO_DIR + f'/recording-{ts}.mp4'
+        return VIDEO_PATH + f'/recording-{ts}.mp4'

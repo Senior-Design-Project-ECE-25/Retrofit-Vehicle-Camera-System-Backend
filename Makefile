@@ -15,16 +15,7 @@ install:
 	source $(ENVDIR)/bin/activate;\
 	$(PIP) install --upgrade pip setuptools wheel;\
 	$(PIP) install -r $(REQPROD);\
-	$(PYTHON) setup.py install;\
-)
-
-develop:
-	$(PYTHON) -m venv $(ENVDIR)
-	(\
-	source $(ENVDIR)/bin/activate;\
-	$(PIP) install --upgrade pip setuptools wheel;\
-	$(PIP) install -r $(REQDEV);\
-	$(PYTHON) setup.py install develop;\
+	$(PIP) install .;\
 )
 
 test:
