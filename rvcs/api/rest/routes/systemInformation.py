@@ -45,9 +45,3 @@ class System:
         raw = check_output(['sudo', 'ls', '/var/lib/bluetooth/'])\
                            .decode('utf-8')
         return raw.split('\n')[0]
-
-
-if __name__ == '__main__':
-    print(System.get_os_information())
-    print(System.get_rvcs_version())
-    print(System.get_bluetooth_mac())

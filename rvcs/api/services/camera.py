@@ -10,7 +10,7 @@ except ImportError:
     PiVideoStream = object()  # For development/testing env
 
 from ...config import LOG_INI_PATH, LOG_DEFAULTS, VIDEO_PATH,\
-                      CAMERA_RESOLUTION, CAMERA_FRAMERATE, TIMESTAMP_FORMAT
+                      CAMERA_CONF, TIMESTAMP_FORMAT
 
 logging.config.fileConfig(
     LOG_INI_PATH,
@@ -24,8 +24,8 @@ class Camera:
     def __init__(self, flip=False, video_stream_cls=PiVideoStream):
         vsLogger.info('Initializing Camera')
         self.video_stream = video_stream_cls(
-            resolution=CAMERA_RESOLUTION,
-            framerate=CAMERA_FRAMERATE)
+            resolution=CAMERA_CONF.resolution,
+            framerate=CAMERA_CONF.framerate)
         self.video_stream.start()
         time.sleep(2.0)  # Must sleep for cam initialization
         self.flip = flip

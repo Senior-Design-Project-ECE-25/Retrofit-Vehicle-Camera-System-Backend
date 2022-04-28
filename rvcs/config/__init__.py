@@ -1,5 +1,25 @@
 import os
 import json
+from dataclasses import dataclass
+from typing import Tuple
+
+
+@dataclass
+class ApiConfig:
+    host: str
+    port: int
+
+
+@dataclass
+class CameraConfig:
+    width: int
+    height: int
+    framerate: int
+
+    @property
+    def resolution(self) -> Tuple[int]:
+        return (self.width, self.height)
+
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__)
@@ -23,9 +43,7 @@ assert os.path.exists(CONF_JSON_PATH), f'Cannot locate {CONF_JSON_PATH}'
 with open(CONF_JSON_PATH, 'r') as config_json:
     _config = json.load(config_json)
 
-API_HOST = _config['api']['host']
-API_PORT = _config['api']['port']
-CAMERA_FRAMERATE = _config['camera']['framerate']
-CAMERA_RESOLUTION = tuple(_config['camera']['resolution'])
+API_CONF = ApiConfig(**_config['api'])
+CAMERA_CONF = CameraConfig(**_config['camera'])
 
 TIMESTAMP_FORMAT = '%Y%m%dT%H%M%S'

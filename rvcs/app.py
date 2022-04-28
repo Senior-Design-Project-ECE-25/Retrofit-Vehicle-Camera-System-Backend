@@ -2,7 +2,7 @@ import threading
 from flask import Flask
 from flask_restful import Api
 
-from .config import API_HOST, API_PORT
+from .config import API_CONF
 from .api.services.camera import Camera
 from .api.rest.routes import Logs, Index, VideoFeed, SystemInformation
 
@@ -26,8 +26,4 @@ class RVCSApp:
 
 
 def main():
-    RVCSApp().run(host=API_HOST, port=API_PORT)
-
-
-if __name__ == '__main__':
-    main()
+    RVCSApp().run(host=API_CONF.host, port=API_CONF.port)

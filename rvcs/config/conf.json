@@ -4,10 +4,8 @@
 		"port": 23451
 	},
 	"camera": {
-		"framerate": 32,
-		"resolution": [
-			380,
-			510
-		]
+		"framerate": 32,	
+		"width": 384,
+		"height": 512
 	}
 }
