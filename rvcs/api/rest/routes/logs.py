@@ -1,5 +1,6 @@
 import os
-from flask import jsonify
+from typing import Dict
+from flask import Response, jsonify
 from flask_restful import Resource
 
 from ....config import BASE_PATH
@@ -14,7 +15,7 @@ class Logs(Resource):
         super(Logs, self).__init__()
 
     @log_request
-    def get(self):
+    def get(self) -> Response:
         data = {}
         for log in self.log_files:
             filename = os.path.splitext(log)[-2]
@@ -29,7 +30,7 @@ class Logs(Resource):
         return jsonify(data=data)
 
     @staticmethod
-    def __format_log_line(line: str):
+    def __format_log_line(line: str) -> Dict[str, str]:
         delimiter = ' | '
         ts, ctxt, lvl, mes = line.strip().split(delimiter)
         return {

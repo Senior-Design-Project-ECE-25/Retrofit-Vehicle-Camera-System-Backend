@@ -1,4 +1,5 @@
-from flask import jsonify
+from typing import Dict
+from flask import Response, jsonify
 from flask_restful import Resource
 from subprocess import check_output
 
@@ -12,7 +13,7 @@ class SystemInformation(Resource):
         super(SystemInformation, self).__init__()
 
     @log_request
-    def get(self):
+    def get(self) -> Response:
         return jsonify(data={
             'os-info': System.get_os_information(),
             'rvcs-version': System.get_rvcs_version(),
@@ -26,7 +27,7 @@ class System:
         print('Not meant to be instantiated.')
 
     @staticmethod
-    def get_os_information() -> dict:
+    def get_os_information() -> Dict[str, str]:
         raw = check_output(['cat', '/etc/os-release'])\
                            .decode('utf-8')
         info_pairs = [kv.split('=') for kv in raw.split('\n')]
@@ -38,7 +39,7 @@ class System:
 
     @staticmethod
     def get_rvcs_version() -> str:
-        return 'v1.0.0 beta'
+        return 'v0.1.0'
 
     @staticmethod
     def get_bluetooth_mac() -> str:
