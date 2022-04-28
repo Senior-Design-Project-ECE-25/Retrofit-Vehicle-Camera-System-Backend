@@ -22,7 +22,7 @@ vsLogger = logging.getLogger('vsLogger')
 class Camera:
     def __init__(self, flip=False, video_stream_cls=PiVideoStream):
         vsLogger.info('Initializing Camera')
-        self.video_stream = video_stream_cls()
+        self.video_stream = video_stream_cls(resolution=(240, 320))
         self.video_stream.start()
         time.sleep(2.0)  # Must sleep for cam initialization
         self.flip = flip
