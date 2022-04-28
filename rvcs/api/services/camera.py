@@ -1,9 +1,9 @@
-import cv2
 import time
 import logging
 import logging.config
 import numpy as np
 from datetime import datetime as dt
+from cv2 import VideoWriter_fourcc, VideoWriter, imencode
 try:
     from imutils.video.pivideostream import PiVideoStream
 except ImportError:
@@ -27,12 +27,12 @@ class Camera:
             resolution=CAMERA_CONF.resolution,
             framerate=CAMERA_CONF.framerate)
         self.video_stream.start()
-        time.sleep(2.0)  # Must sleep for cam initialization
+        # time.sleep(2.0)  # Must sleep for cam initialization
         self.flip = flip
 
         file = Camera.__generate_file_name()
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        self.video_writer = cv2.VideoWriter(
+        fourcc = VideoWriter_fourcc(*'mp4v')
+        self.video_writer = VideoWriter(
             file,
             fourcc,
             int(self.video_stream.camera.framerate),
@@ -62,7 +62,7 @@ class Camera:
 
     def __get_frame(self):
         frame = self.__read()
-        _, jpegFrame = cv2.imencode('.jpg', frame)
+        _, jpegFrame = imencode('.jpg', frame)
         return jpegFrame.tobytes()
 
     def __read(self):

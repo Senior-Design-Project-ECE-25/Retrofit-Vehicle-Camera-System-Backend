@@ -4,7 +4,7 @@ from flask_restful import Resource
 from subprocess import check_output
 
 from ..utilities.utils import log_request
-from ..... import __version__
+from .... import __version__
 
 
 class SystemInformation(Resource):
@@ -15,18 +15,17 @@ class SystemInformation(Resource):
 
     @log_request
     def get(self) -> Response:
-        return jsonify(data={
-            'os-info': System.get_os_information(),
-            'rvcs-version': System.get_rvcs_version(),
-            'bt-mac': System.get_bluetooth_mac()
-        })
+        return jsonify(
+            data={
+                'os-info': System.get_os_information(),
+                'rvcs-version': System.get_rvcs_version(),
+                'bt-mac': System.get_bluetooth_mac()
+            }
+        )
 
 
 class System:
     """Collection of system information getters."""
-    def __init__(self) -> None:
-        print('Not meant to be instantiated.')
-
     @staticmethod
     def get_os_information() -> Dict[str, str]:
         raw = check_output(['cat', '/etc/os-release'])\
