@@ -4,6 +4,7 @@ from flask_restful import Resource
 from subprocess import check_output
 
 from ..utilities.utils import log_request
+from ..... import __version__
 
 
 class SystemInformation(Resource):
@@ -39,7 +40,7 @@ class System:
 
     @staticmethod
     def get_rvcs_version() -> str:
-        return 'v0.1.0'
+        return __version__
 
     @staticmethod
     def get_bluetooth_mac() -> str:
