@@ -2,8 +2,6 @@ SHELL := /bin/bash
 PYTHON = python3
 PIP := pip3
 
-REQPROD := requirements/prod.txt
-REQDEV := requirements/dev.txt
 ENVDIR := ./venv
 
 PROJECT := rvcs
@@ -14,7 +12,6 @@ install:
 	(\
 	source $(ENVDIR)/bin/activate;\
 	$(PIP) install --upgrade pip setuptools wheel;\
-	$(PIP) install -r $(REQPROD);\
 	$(PIP) install .;\
 )
 
