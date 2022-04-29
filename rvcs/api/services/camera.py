@@ -31,7 +31,7 @@ class Camera:
         self.flip = flip
 
         file = Camera.__generate_file_name()
-        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+        fourcc = cv2.VideoWriter_fourcc(*'MP4V')
         self.video_writer = cv2.VideoWriter(
             file,
             fourcc,
@@ -53,6 +53,8 @@ class Camera:
     def record(self):
         last = 0
         frequency = 1 / self.video_stream.camera.framerate
+
+        vsLogger.info('Recording Started')
 
         while True:
             while time.time() - last < frequency:
