@@ -5,7 +5,7 @@
 	},
 	"camera": {
 		"framerate": 32,	
-		"width": 384,
-		"height": 512
+		"width": 240,
+		"height": 320
 	}
 }
