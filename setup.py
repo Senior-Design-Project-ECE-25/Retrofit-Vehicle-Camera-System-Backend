@@ -64,7 +64,8 @@ setup(
         'rvcs': [
             'config/conf.json',
             'config/logger.ini',
-            'templates/index.html'
+            'templates/index.html',
+            'templates/videoFeedFlex.html'
         ]
     },
     entry_points={
