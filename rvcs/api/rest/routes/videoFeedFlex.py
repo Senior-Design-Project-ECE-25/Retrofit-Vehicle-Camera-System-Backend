@@ -5,7 +5,7 @@ from ..utilities.utils import log_request
 
 
 class VideoFeedFlex(Resource):
-    endpoint = '/api/v1/VideoFeed/flex'
+    endpoint = '/api/v1/VideoFeed/Flex'
 
     def __init__(self) -> None:
         super(VideoFeedFlex, self).__init__()
