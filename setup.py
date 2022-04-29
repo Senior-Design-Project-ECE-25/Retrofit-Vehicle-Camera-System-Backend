@@ -18,7 +18,7 @@ class Env(Enum):
             environment = os.environ[env_variable].lower()
             return Env[environment]
         except KeyError:
-            return cls.STAGE
+            return cls.stage
 
 
 def _read_readme() -> Union[str, None]:
