@@ -63,7 +63,8 @@ setup(
     package_data={
         'rvcs': [
             'config/conf.json',
-            'config/logger.ini'
+            'config/logger.ini',
+            'templates/index.html'
         ]
     },
     entry_points={

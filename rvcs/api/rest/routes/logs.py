@@ -3,7 +3,7 @@ from typing import Dict
 from flask import Response, jsonify
 from flask_restful import Resource
 
-from ....config import BASE_PATH
+from ....config import LOG_PATH
 from ..utilities.utils import log_request
 
 
@@ -21,7 +21,7 @@ class Logs(Resource):
             filename = os.path.splitext(log)[-2]
             data[filename] = []
 
-            with open(os.path.join(BASE_PATH, 'logs', log), 'r') as log_data:
+            with open(os.path.join(LOG_PATH, log), 'r') as log_data:
                 tmp = []
                 for line in log_data:
                     tmp.append(self.__format_log_line(line))
