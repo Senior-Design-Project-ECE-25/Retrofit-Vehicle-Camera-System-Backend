@@ -3,15 +3,26 @@ from enum import Enum
 from typing import List, Union
 from setuptools import setup, find_packages
 
+BASE_PATH = os.path.abspath(os.path.dirname(__file__))
+
 
 class Env(Enum):
-    PROD = 'prod'
-    STAGE = 'stage'
-    DEV = 'dev'
+    """The valid environment values"""
+    prod = 'prod'
+    stage = 'stage'
+    dev = 'dev'
+
+    @classmethod
+    def get_environment(cls, env_variable: str):
+        try:
+            environment = os.environ[env_variable].lower()
+            return Env[environment]
+        except KeyError:
+            return cls.STAGE
 
 
-def read_readme() -> Union[str, None]:
-    from rvcs.config import BASE_PATH
+def _read_readme() -> Union[str, None]:
+    """Read the readme as a string"""
     try:
         with open(os.path.join(BASE_PATH, 'README.md'), 'r') as readme_file:
             return readme_file.read()
@@ -19,8 +30,8 @@ def read_readme() -> Union[str, None]:
         return None
 
 
-def read_requirements(env=Env.PROD) -> Union[List[str], None]:
-    from rvcs.config import BASE_PATH
+def _read_requirements(env=Env.stage) -> Union[List[str], None]:
+    """Read the requriements as a list of required values"""
     requirements = os.path.join('requirements', f'{env.value}.txt')
     try:
         with open(os.path.join(BASE_PATH, requirements), 'r') as req_file:
@@ -29,16 +40,20 @@ def read_requirements(env=Env.PROD) -> Union[List[str], None]:
         return None
 
 
-def get_version() -> str:
+def _get_version() -> str:
+    """Get the version string from inside the module"""
     from rvcs import __version__
     return __version__
 
 
+environment = Env.get_environment('RVCS_ENV')
+
+
 setup(
     name='rvcs',
-    version=get_version(),
+    version=_get_version(),
     description='API for exposing RVCS backend',
-    long_description=read_readme(),
+    long_description=_read_readme(),
     author='Jack McVeigh',
     author_email='jmcveigh55@gmail.com',
     url='https://github.com/Senior-Design-Project-ECE-25'
@@ -56,5 +71,5 @@ setup(
             'rvcs=rvcs.cli:entry_point',
         ],
     },
-    install_requires=read_requirements(Env.PROD)
+    install_requires=_read_requirements(environment)
 )

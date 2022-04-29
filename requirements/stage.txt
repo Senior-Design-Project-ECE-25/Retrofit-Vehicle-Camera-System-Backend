@@ -1,0 +1,6 @@
+flask
+flask-restful
+imutils
+numpy
+opencv-python-headless
+picamera
