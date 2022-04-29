@@ -31,7 +31,7 @@ class Camera:
         self.flip = flip
 
         file = Camera.__generate_file_name()
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
         self.video_writer = cv2.VideoWriter(
             file,
             fourcc,
