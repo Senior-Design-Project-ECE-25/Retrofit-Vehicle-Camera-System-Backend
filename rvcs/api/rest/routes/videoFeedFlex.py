@@ -4,11 +4,11 @@ from flask_restful import Resource
 from ..utilities.utils import log_request
 
 
-class Index(Resource):
+class VideoFeedFlex(Resource):
     endpoint = '/api/v1/VideoFeed/flex'
 
     def __init__(self) -> None:
-        super(Index, self).__init__()
+        super(VideoFeedFlex, self).__init__()
 
     @log_request
     def get(self) -> Response:

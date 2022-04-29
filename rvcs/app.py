@@ -4,7 +4,8 @@ from flask_restful import Api
 
 from .config import API_CONF
 from .api.services.camera import Camera
-from .api.rest.routes import Logs, Index, VideoFeed, SystemInformation
+from .api.rest.routes import Logs, Index, SystemInformation, \
+                             VideoFeed, VideoFeedFlex
 
 
 class App:
@@ -17,6 +18,7 @@ class App:
         api.add_resource(Index, Index.endpoint)
         VideoFeedWithCamera = VideoFeed.attach_camera(self.camera)
         api.add_resource(VideoFeedWithCamera, VideoFeedWithCamera.endpoint)
+        api.add_resource(VideoFeedFlex, VideoFeedFlex.endpoint)
         api.add_resource(SystemInformation, SystemInformation.endpoint)
 
     def run(self, host=API_CONF.host, port=API_CONF.port) -> None:
