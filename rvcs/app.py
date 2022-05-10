@@ -17,7 +17,7 @@ class App:
 
         api.add_resource(Logs, Logs.endpoint)
         api.add_resource(Index, Index.endpoint)
-        api.add_resource(Video, Video.endpoint.format('<str:video_file>'))
+        api.add_resource(Video, Video.endpoint.format('<string:video_file>'))
         api.add_resource(VideoList, VideoList.endpoint)
         VideoFeedWithCamera = VideoFeed.attach_camera(self.camera)
         api.add_resource(VideoFeedWithCamera, VideoFeedWithCamera.endpoint)
