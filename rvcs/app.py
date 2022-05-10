@@ -5,7 +5,7 @@ from flask_restful import Api
 from .config import API_CONF
 from .api.services.camera import Camera
 from .api.rest.routes import (
-    Logs, Index, Videos, VideoFeed, VideoFeedFlex, SystemInformation
+    Logs, Index, Video, VideoList, VideoFeed, VideoFeedFlex, SystemInformation
 )
 
 
@@ -17,7 +17,8 @@ class App:
 
         api.add_resource(Logs, Logs.endpoint)
         api.add_resource(Index, Index.endpoint)
-        api.add_resource(Videos, Videos.endpoint)
+        api.add_resource(Video, Video.endpoint.format('<str:video_file>'))
+        api.add_resource(VideoList, VideoList.endpoint)
         VideoFeedWithCamera = VideoFeed.attach_camera(self.camera)
         api.add_resource(VideoFeedWithCamera, VideoFeedWithCamera.endpoint)
         api.add_resource(VideoFeedFlex, VideoFeedFlex.endpoint)
