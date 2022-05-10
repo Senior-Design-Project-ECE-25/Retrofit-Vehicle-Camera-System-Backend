@@ -1,5 +1,4 @@
 import os
-import resource
 from flask import abort, jsonify, Response
 from flask_restful import Resource
 
@@ -21,7 +20,7 @@ class Video(Resource):
         return jsonify(data=video_file)
 
 
-class VideoList(resource):
+class VideoList(Resource):
     endpoint = '/api/v1/VideoList'
 
     def __init__(self) -> None:
