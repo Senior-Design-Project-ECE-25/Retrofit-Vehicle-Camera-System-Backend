@@ -3,7 +3,7 @@ import time
 import logging
 import logging.config
 import numpy as np
-from datetime import datetime as dt
+from datetime import timedelta, datetime as dt
 try:
     from imutils.video.pivideostream import PiVideoStream
 except ImportError:
@@ -30,14 +30,6 @@ class Camera:
         time.sleep(2.0)  # Must sleep for cam initialization
         self.flip = flip
 
-        file = Camera.__generate_file_name()
-        fourcc = cv2.VideoWriter_fourcc(*'MP4V')
-        self.video_writer = cv2.VideoWriter(
-            file,
-            fourcc,
-            int(self.video_stream.camera.framerate),
-            self.video_stream.camera.resolution
-        )
         vsLogger.info('Done Initializing Camera')
 
     def __del__(self):
@@ -53,19 +45,34 @@ class Camera:
     def record(self):
         last = 0
         frequency = 1 / self.video_stream.camera.framerate
-
-        vsLogger.info('Recording Started')
+        fourcc = cv2.VideoWriter_fourcc(*'MP4V')
 
         while True:
-            while time.time() - last < frequency:
-                time.sleep(0.001)
-            frame = self.__read()
-            self.video_writer.write(frame)
+            file = Camera.__generate_file_name()
+            video_writer = cv2.VideoWriter(
+                file,
+                fourcc,
+                int(self.video_stream.camera.framerate),
+                self.video_stream.camera.resolution
+            )
 
-    def __get_frame(self):
-        frame = self.__read()
-        _, jpegFrame = cv2.imencode('.jpg', frame)
-        return jpegFrame.tobytes()
+            vsLogger.info(f'Recording Started: {file}')
+
+            end_time = dt.now() + timedelta(minutes=1)
+            while dt.now() < end_time:
+                while time.time() - last < frequency:
+                    time.sleep(0.001)
+
+                frame = self.__read()
+                video_writer.write(frame)
+
+            video_writer.release()
+            vsLogger.info(f'Recording Finished: {file}')
+
+    def __flip_if_needed(self, frame):
+        if self.flip:
+            return np.flip(frame, 0)
+        return frame
 
     def __read(self):
         frame = self.video_stream.read()
@@ -73,10 +80,10 @@ class Camera:
             frame = self.__flip_if_needed(frame)
         return frame
 
-    def __flip_if_needed(self, frame):
-        if self.flip:
-            return np.flip(frame, 0)
-        return frame
+    def __get_frame(self):
+        frame = self.__read()
+        _, jpegFrame = cv2.imencode('.jpg', frame)
+        return jpegFrame.tobytes()
 
     @staticmethod
     def __generate_file_name() -> str:
