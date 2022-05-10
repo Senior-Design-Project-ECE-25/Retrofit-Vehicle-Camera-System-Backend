@@ -26,8 +26,10 @@ class CameraConfig:
 BASE_PATH = os.path.abspath(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 )
-VIDEO_PATH = os.path.join(BASE_PATH, 'rvcs', 'videos')
-LOG_PATH = os.path.join(BASE_PATH, 'rvcs', 'logs')
+DATA_PATH = '/opt/rvcs-staging'
+VIDEO_PATH = os.path.join(DATA_PATH, 'videos')
+LOG_PATH = os.path.join(DATA_PATH, 'logs')
+
 
 os.makedirs(VIDEO_PATH, mode=0o777, exist_ok=True)
 os.makedirs(LOG_PATH, mode=0o777, exist_ok=True)
