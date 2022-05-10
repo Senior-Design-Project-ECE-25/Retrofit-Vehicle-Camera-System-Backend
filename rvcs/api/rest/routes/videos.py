@@ -1,5 +1,5 @@
 import os
-from flask import Response, jsonify
+from flask import abort, jsonify, Response
 from flask_restful import Resource
 
 from ....config import VIDEO_PATH
@@ -20,3 +20,10 @@ class Videos(Resource):
                 if video_file.endswith('.mp4')
             ]
         )
+
+    @log_request
+    def post(self, video_file: str) -> Response:
+        if video_file not in os.listdir(VIDEO_PATH):
+            abort(404)
+
+        return jsonify(data=video_file)
