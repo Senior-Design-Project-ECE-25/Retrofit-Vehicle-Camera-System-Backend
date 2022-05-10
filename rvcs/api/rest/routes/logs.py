@@ -8,7 +8,7 @@ from ..utilities.utils import log_request
 
 
 class Logs(Resource):
-    endpoint = '/api/v1/logs'
+    endpoint = '/api/v1/Logs'
     log_files = ['app.log', 'vs.log']
 
     def __init__(self) -> None:
