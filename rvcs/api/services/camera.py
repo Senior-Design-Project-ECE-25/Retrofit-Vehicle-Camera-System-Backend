@@ -45,7 +45,7 @@ class Camera:
     def record(self):
         last = 0
         frequency = 1 / self.video_stream.camera.framerate
-        fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 
         while True:
             file = Camera.__generate_file_name()
